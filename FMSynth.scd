@@ -28,4 +28,4 @@ n = NetAddr.new("127.0.0.1");
 OSCFunc({|msg, time, addr, recvPort| x.set(\p5, msg[1], \t_gate, 1)}, '/FM/p5', n);
 
 
-OSCFunc.trace(bool: false, hideStatusMsg: true);
+OSCFunc.trace(bool: true, hideStatusMsg: true);

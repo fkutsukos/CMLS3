@@ -16,7 +16,7 @@
 //==============================================================================
 /**
 */
-class Cmls_fmsynthAudioProcessorEditor  : public AudioProcessorEditor
+class Cmls_fmsynthAudioProcessorEditor  : public AudioProcessorEditor, private Slider::Listener
 {
 public:
     Cmls_fmsynthAudioProcessorEditor (Cmls_fmsynthAudioProcessor&);
@@ -27,6 +27,15 @@ public:
     void resized() override;
 
 private:
+    
+    Slider modFreq;
+    Label modFreqLabel;
+    
+    Slider modIndex;
+    Label modIndexLabel;
+    
+    void sliderValueChanged( Slider * slider) override;
+    
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     Cmls_fmsynthAudioProcessor& processor;

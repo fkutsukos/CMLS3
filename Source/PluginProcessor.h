@@ -11,6 +11,16 @@
 #pragma once
 
 #include <JuceHeader.h>
+typedef struct
+{
+    float mod_phase;
+    float mod_Freq;
+    int mod_Index;
+    float phase;
+    float amp;
+    float car_freq;
+}
+FMData;
 
 //==============================================================================
 /**
@@ -18,6 +28,8 @@
 class Cmls_fmsynthAudioProcessor  : public AudioProcessor
 {
 public:
+    
+
     //==============================================================================
     Cmls_fmsynthAudioProcessor();
     ~Cmls_fmsynthAudioProcessor();
@@ -54,8 +66,20 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    
+    void setCarrierFreq(float val);
+    void setModFreq(float val);
+    void setModIndex(float val);
+    float freq;
+    void sendmodIndex(float modIndexValue);
+    void sendmodFreq(float modFreqValue);
 
 private:
+    FMData data;
+    DatagramSocket ds;
+    OSCSender sender; // Declaration of the // OSC sender
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Cmls_fmsynthAudioProcessor)
 };

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="F7l81n" name="CMLS_FMSynth" projectType="audioplug" jucerVersion="5.4.7">
+<JUCERPROJECT id="F7l81n" name="CMLS_FMSynth" projectType="audioplug" jucerVersion="5.4.7"
+              pluginCharacteristicsValue="pluginWantsMidiIn">
   <MAINGROUP id="ViwbNE" name="CMLS_FMSynth">
     <GROUP id="{038A10AA-7BE1-178C-F384-7240ED0E1181}" name="Source">
       <FILE id="CwP9VD" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -33,6 +34,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../../../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_opengl" path="../../../../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../../../../../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -52,6 +54,7 @@
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <OSX/>

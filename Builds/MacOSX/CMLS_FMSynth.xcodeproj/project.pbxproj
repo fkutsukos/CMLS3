@@ -165,6 +165,10 @@
 			isa = PBXBuildFile;
 			fileRef = 7E5B9700221EF35D16F3EC4F;
 		};
+		733FF8A2FAE2F2F9D7B112B4 = {
+			isa = PBXBuildFile;
+			fileRef = 6A41B92FEB2BF7AC9B6CEB8F;
+		};
 		04D3B502BCC355D9B81E5ED2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -332,6 +336,13 @@
 			includeInIndex = 0;
 			path = "CMLS_FMSynth.vst3";
 			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		6A41B92FEB2BF7AC9B6CEB8F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "include_juce_osc.cpp";
+			path = "../../JuceLibraryCode/include_juce_osc.cpp";
+			sourceTree = "SOURCE_ROOT";
 		};
 		70FC8C46863AB0C903FDFE8F = {
 			isa = PBXFileReference;
@@ -557,6 +568,13 @@
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		D2E9F49BE90778C76D8CA34C = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_osc";
+			path = "/Applications/JUCE/modules/juce_osc";
+			sourceTree = "<absolute>";
+		};
 		D36CB29C3542BCEE17734732 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -628,6 +646,7 @@
 				BCFA3736B1DE987A43ADF019,
 				82FB0E60E271207DB1D40365,
 				0E577E247F9C8C343EFC3324,
+				D2E9F49BE90778C76D8CA34C,
 			);
 			name = "JUCE Modules";
 			sourceTree = "<group>";
@@ -656,6 +675,7 @@
 				1DB0C40055232A748AAE3687,
 				D0D4AFD5C03242E07E1505ED,
 				7E5B9700221EF35D16F3EC4F,
+				6A41B92FEB2BF7AC9B6CEB8F,
 				7D4CFB4C83012005780CDF11,
 			);
 			name = "JUCE Library Code";
@@ -1492,6 +1512,7 @@
 				1A3CDC58FDDCA91A6D0A88C8,
 				4F911D0E41C38D59F95EE9C6,
 				2A36F1F898FBB60562800982,
+				733FF8A2FAE2F2F9D7B112B4,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
