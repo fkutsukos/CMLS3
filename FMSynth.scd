@@ -29,3 +29,85 @@ OSCFunc({|msg, time, addr, recvPort| x.set(\p5, msg[1], \t_gate, 1)}, '/FM/p5', 
 
 
 OSCFunc.trace(bool: true, hideStatusMsg: true);
+
+//type1 (asr)
+(
+SynthDef(\FM1,
+    {
+        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3;
+        var env1, env2, modFr, out, p6, temp;
+        p6 = carr/cmRatio;
+
+		env1 = EnvGen.kr(Env([0,vol,vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*p6),((mInd2-mInd1)*p6),0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+
+
+        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        out = SinOsc.ar(carr+modFr,0,env1);
+        Out.ar(0,Pan2.ar(out,0));
+    }
+).add;
+)
+//type2 (asdr)
+(
+SynthDef(\FM2,
+    {
+        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3, envType = 3;
+        var env1, env2, modFr, out, p6, temp;
+        p6 = carr/cmRatio;
+
+		env1 = EnvGen.kr(Env([0,vol,0.75*vol,0.75*vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*p6),((mInd2-mInd1)*p6)*0.75,((mInd2-mInd1)*p6)*0.75,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+
+
+        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        out = SinOsc.ar(carr+modFr,0,env1);
+        Out.ar(0,Pan2.ar(out,0));
+    }
+).add;
+)
+//type3 (perc)
+(
+SynthDef(\FM3,
+    {
+        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3, envType = 3;
+        var env1, env2, modFr, out, p6, temp;
+        p6 = carr/cmRatio;
+
+		env1 = EnvGen.kr(Env.perc(dur/4,dur*3/4,vol,-4.0),gate:t_gate);
+		env2 = EnvGen.kr(Env.perc(dur/4,dur*3/4,((mInd2-mInd1)*p6),-4.0),gate:t_gate);
+
+        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        out = SinOsc.ar(carr+modFr,0,env1);
+        Out.ar(0,Pan2.ar(out,0));
+    }
+).add;
+)
+
+(
+
+var envType = 1;
+if(envType == 1,
+	{
+		x = Synth(\FM1);
+		x.set(\carr,261.63,\t_gate,1);
+		x.set(\carr,293.67,\t_gate,1);
+		x.set(\carr,329.63,\t_gate,1);
+	},{
+		if(envType == 2,
+			{
+				x = Synth(\FM2);
+				x.set(\carr,261.63,\t_gate,1);
+				x.set(\carr,293.67,\t_gate,1);
+				x.set(\carr,329.63,\t_gate,1);
+			},{
+				x = Synth(\FM3);
+				x.set(\carr,261.63,\t_gate,1);
+				x.set(\carr,293.67,\t_gate,1);
+				x.set(\carr,329.63,\t_gate,1);
+			}
+		)
+	}
+)
+
+)
