@@ -29,6 +29,7 @@ class Cmls_fmsynthAudioProcessor  : public AudioProcessor
 {
 public:
     
+    float volume
 
     //==============================================================================
     Cmls_fmsynthAudioProcessor();
@@ -67,13 +68,13 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    
     void setCarrierFreq(float val);
     void setModFreq(float val);
     void setModIndex(float val);
     float freq;
     void sendmodIndex(float modIndexValue);
     void sendmodFreq(float modFreqValue);
+
 
 private:
     FMData data;
