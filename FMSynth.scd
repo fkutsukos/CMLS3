@@ -35,14 +35,14 @@ OSCFunc.trace(bool: true, hideStatusMsg: true);
 SynthDef(\FM1,
     {
         arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3;
-        var env1, env2, modFr, out, p6, temp;
-        p6 = carr/cmRatio;
+        var env1, env2, modFr, out, mf, temp;
+        mf = carr/cmRatio;
 
 		env1 = EnvGen.kr(Env([0,vol,vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
-		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*p6),((mInd2-mInd1)*p6),0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf),0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
 
 
-        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
@@ -52,15 +52,15 @@ SynthDef(\FM1,
 (
 SynthDef(\FM2,
     {
-        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3, envType = 3;
-        var env1, env2, modFr, out, p6, temp;
-        p6 = carr/cmRatio;
+        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3;
+        var env1, env2, modFr, out, mf, temp;
+        mf = carr/cmRatio;
 
 		env1 = EnvGen.kr(Env([0,vol,0.75*vol,0.75*vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
-		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*p6),((mInd2-mInd1)*p6)*0.75,((mInd2-mInd1)*p6)*0.75,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf)*0.75,((mInd2-mInd1)*mf)*0.75,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
 
 
-        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
@@ -70,14 +70,14 @@ SynthDef(\FM2,
 (
 SynthDef(\FM3,
     {
-        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3, envType = 3;
-        var env1, env2, modFr, out, p6, temp;
-        p6 = carr/cmRatio;
+        arg dur = 1, vol = 1, carr = 440, mInd1 = 4, mInd2 = 2, t_gate = 0, cmRatio = 3;
+        var env1, env2, modFr, out, mf, temp;
+        mf = carr/cmRatio;
 
 		env1 = EnvGen.kr(Env.perc(dur/4,dur*3/4,vol,-4.0),gate:t_gate);
-		env2 = EnvGen.kr(Env.perc(dur/4,dur*3/4,((mInd2-mInd1)*p6),-4.0),gate:t_gate);
+		env2 = EnvGen.kr(Env.perc(dur/4,dur*3/4,((mInd2-mInd1)*mf),-4.0),gate:t_gate);
 
-        modFr = SinOsc.kr(p6,0,env2+(mInd1*p6));
+        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
