@@ -54,7 +54,7 @@ SynthDef(\FM3,
 ).add;
 )
 
-var envType;
+~envType = 1;
 
 x = Synth(\FM1);
 y = Synth(\FM2);
@@ -63,17 +63,17 @@ z = Synth(\FM3);
 n = NetAddr.new("127.0.0.1");
 
 //listener for the envType
-OSCFunc({|msg, time, addr, recvPort| envType = msg[1]}, '...', n);
+OSCFunc({|msg, time, addr, recvPort| ~envType = msg[1]}, '...', n);
 
 //listeners for all the index
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\dur,msg[1])},{if(envType == 2,{y.set(\dur,msg[1])},{z.set(\dur,msg[1])})})}, '...', n);
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\vol,msg[1])},{if(envType == 2,{y.set(\vol,msg[1])},{z.set(\vol,msg[1])})})}, '...', n);
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\cmRatio,msg[1])},{if(envType == 2,{y.set(\cmRatio,msg[1])},{z.set(\cmRatio,msg[1])})})}, '...', n);
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\mInd1,msg[1])},{if(envType == 2,{y.set(\mInd1,msg[1])},{z.set(\mInd1,msg[1])})})}, '...', n);
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\mInd2,msg[1])},{if(envType == 2,{y.set(\mInd2,msg[1])},{z.set(\mInd2,msg[1])})})}, '...', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\dur,msg[1])},{if(~envType == 2,{y.set(\dur,msg[1])},{z.set(\dur,msg[1])})})}, '/FM/dur', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\vol,msg[1])},{if(~envType == 2,{y.set(\vol,msg[1])},{z.set(\vol,msg[1])})})}, '/FM/vol', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\cmRatio,msg[1])},{if(~envType == 2,{y.set(\cmRatio,msg[1])},{z.set(\cmRatio,msg[1])})})}, '/FM/cmRatio', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\mInd1,msg[1])},{if(~envType == 2,{y.set(\mInd1,msg[1])},{z.set(\mInd1,msg[1])})})}, '/FM/I1', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\mInd2,msg[1])},{if(~envType == 2,{y.set(\mInd2,msg[1])},{z.set(\mInd2,msg[1])})})}, '/FM/I2', n);
 
 //listener for playing the intruments
-OSCFunc({|msg, time, addr, recvPort| if(envType == 1,{x.set(\carr,msg[1],\t_gate,1)},{if(envType == 2,{\carr,msg[1],\t_gate,1)},{z.set(\carr,msg[1],\t_gate,1)})})}, '...', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\carr,msg[1] , \t_gate, 1)},{if(~envType == 2,{y.set(\carr,msg[1] ,  \t_gate, 1)},{z.set(\carr,msg[1] ,  \t_gate, 1)})})}, '/FM/carr', n);
 
 
 OSCFunc.trace(bool: true, hideStatusMsg: true);

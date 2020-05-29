@@ -4,10 +4,10 @@
               pluginCharacteristicsValue="pluginWantsMidiIn">
   <MAINGROUP id="ViwbNE" name="CMLS_FMSynth">
     <GROUP id="{038A10AA-7BE1-178C-F384-7240ED0E1181}" name="Source">
+      <FILE id="qoIAXP" name="3950b7d79751e82ab42ee90443941577.jpg" compile="0"
+            resource="1" file="3950b7d79751e82ab42ee90443941577.jpg"/>
       <FILE id="CwP9VD" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="gZsuPM" name="3950b7d79751e82ab42ee90443941577.jpg" compile="0"
-            resource="1" file="../../../Desktop/3950b7d79751e82ab42ee90443941577.jpg"/>
       <FILE id="zWjgOf" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
       <FILE id="ajVn0S" name="PluginEditor.cpp" compile="1" resource="0"
