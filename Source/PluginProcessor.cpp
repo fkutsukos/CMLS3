@@ -142,7 +142,7 @@ void Cmls_fmsynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiB
     for (MidiBuffer::Iterator i (midiMessages); i.getNextEvent (m, time);){
         if (m.isNoteOn()) {
             freq = (float) MidiMessage::getMidiNoteInHertz (m.getNoteNumber());
-            sender.send("/FM/p5", freq);
+            sender.send("/FM/carr", freq);
                         
             data.amp = 0.5;
             data.car_freq = m.getMidiNoteInHertz(m.getNoteNumber());

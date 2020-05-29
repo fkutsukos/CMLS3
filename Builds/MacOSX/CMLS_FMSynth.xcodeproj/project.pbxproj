@@ -85,6 +85,10 @@
 			isa = PBXBuildFile;
 			fileRef = A89966694810927CA07E106C;
 		};
+		F9879B54D08202A5C6B5E11E = {
+			isa = PBXBuildFile;
+			fileRef = 876C988DAE7C7203723DA62B;
+		};
 		447BB86510BBA8FBAFC2C888 = {
 			isa = PBXBuildFile;
 			fileRef = 7B3D141C51E0B000F5445FA2;
@@ -274,6 +278,13 @@
 			path = "Info-Standalone_Plugin.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		4E460D72037C297B557F0405 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BinaryData.h;
+			path = ../../JuceLibraryCode/BinaryData.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		4EB88D0520A151D07F8D3B68 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -393,6 +404,13 @@
 			path = "/Applications/JUCE/modules/juce_gui_extra";
 			sourceTree = "<absolute>";
 		};
+		876C988DAE7C7203723DA62B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BinaryData.cpp;
+			path = ../../JuceLibraryCode/BinaryData.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		880F0C2B15809E186E523CC3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -469,6 +487,13 @@
 			name = WebKit.framework;
 			path = System/Library/Frameworks/WebKit.framework;
 			sourceTree = SDKROOT;
+		};
+		8D5890805341383F352EFD44 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.jpeg;
+			name = 3950b7d79751e82ab42ee90443941577.jpg;
+			path = ../../3950b7d79751e82ab42ee90443941577.jpg;
+			sourceTree = "SOURCE_ROOT";
 		};
 		9B0052E289C3C6C5FDD3D9EC = {
 			isa = PBXFileReference;
@@ -613,6 +638,7 @@
 		5CF6807D347C268CD6A8B239 = {
 			isa = PBXGroup;
 			children = (
+				8D5890805341383F352EFD44,
 				A029A12FEF15D92A963A63C3,
 				5F7923BB671171F2F43B94B3,
 				A89966694810927CA07E106C,
@@ -655,6 +681,8 @@
 			isa = PBXGroup;
 			children = (
 				2A4B25FD7B92CF57686B3BD7,
+				876C988DAE7C7203723DA62B,
+				4E460D72037C297B557F0405,
 				7B3D141C51E0B000F5445FA2,
 				53B70D34629F0326B2BF1EA3,
 				4439F64F503BDAECC5714C57,
@@ -1497,6 +1525,7 @@
 			files = (
 				E39CBDBE6475009EE3A0659D,
 				31E18D245A1D68070F1FD09C,
+				F9879B54D08202A5C6B5E11E,
 				447BB86510BBA8FBAFC2C888,
 				21472DA50A5D2CD35FC2B75C,
 				7D617A2D1D221AAC76F8CD26,
