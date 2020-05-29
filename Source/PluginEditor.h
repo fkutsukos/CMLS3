@@ -111,7 +111,7 @@ private:
         switch (styleMenu.getSelectedId())
         {
         case 1: modFreq.setValue(1), modIndex.setValue(0), modIndex2.setValue(5), durationSlider.setValue(0.6), adsrButton.setToggleState(true, true); break;
-        case 2: modFreq.setValue(0.7), modIndex.setValue(0), modIndex2.setValue(2), durationSlider.setValue(0.2), percButton.setToggleState(true, true); break;
+        case 2: modFreq.setValue(0.71), modIndex.setValue(0), modIndex2.setValue(2), durationSlider.setValue(0.2), percButton.setToggleState(true, true); break;
         case 3: modFreq.setValue(3), modIndex.setValue(4), modIndex2.setValue(1), asrButton.setToggleState(true, true); break;
         default: break;
         }

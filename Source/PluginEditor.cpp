@@ -29,13 +29,11 @@ Cmls_fmsynthAudioProcessorEditor::Cmls_fmsynthAudioProcessorEditor (Cmls_fmsynth
     durationSlider.setTextValueSuffix(" sec");
     durationSlider.addListener(this);
 
-    modFreq.setRange(0,10,0.1);
+    modFreq.setRange(0.20, 10, 0.01);
     modFreq.setSliderStyle(Slider::RotaryVerticalDrag);
     modFreq.setTextBoxStyle (Slider::TextBoxBelow, false, 50, 20);
     modFreq.setLookAndFeel(&otherLookAndFeel);
     modFreq.addListener(this);
-    
-    //modFreqLabel.setText("C/M",dontSendNotification);
     
     modIndex.setRange(0,10,0.5);
     modIndex.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -43,7 +41,6 @@ Cmls_fmsynthAudioProcessorEditor::Cmls_fmsynthAudioProcessorEditor (Cmls_fmsynth
     modIndex.setLookAndFeel(&otherLookAndFeel);
     modIndex.addListener(this);
 
-    //modIndexLabel.setText("I1", dontSendNotification);
 
     modIndex2.setRange(0, 10, 0.5);
     modIndex2.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -51,7 +48,6 @@ Cmls_fmsynthAudioProcessorEditor::Cmls_fmsynthAudioProcessorEditor (Cmls_fmsynth
     modIndex2.setLookAndFeel(&otherLookAndFeel);
     modIndex2.addListener(this);
 
-    //modIndexLabel2.setText("I2", dontSendNotification);
 
     addAndMakeVisible(modFreq);
     addAndMakeVisible(modFreqLabel);
