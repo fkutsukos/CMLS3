@@ -141,14 +141,13 @@ void Cmls_fmsynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiB
     int time;
     for (MidiBuffer::Iterator i (midiMessages); i.getNextEvent (m, time);){
         if (m.isNoteOn()) {
+
             freq = (float) MidiMessage::getMidiNoteInHertz (m.getNoteNumber());
             sender.send("/FM/carr", freq);
-                        
-            data.amp = 0.5;
-            data.car_freq = m.getMidiNoteInHertz(m.getNoteNumber());
+   
         }
         else if (m.isNoteOff()) {
-            data.amp = 0;
+
         }
         else if (m.isAftertouch()) {
             
@@ -187,29 +186,34 @@ void Cmls_fmsynthAudioProcessor::setStateInformation (const void* data, int size
     // whose contents will have been created by the getStateInformation() call.
 }
 
-
-void Cmls_fmsynthAudioProcessor::setModFreq(float val)
-{
-    data.mod_Freq = val;
-}
-
-void Cmls_fmsynthAudioProcessor::setCarrierFreq(float val)
-{
-    data.car_freq = val;
-}
-void Cmls_fmsynthAudioProcessor::setModIndex(float val)
-{
-    data.mod_Index = val;
-}
-
 void Cmls_fmsynthAudioProcessor::sendmodIndex(float modIndexValue)
 {
-    sender.send("/FM/p7",(modIndexValue));
+    sender.send("/FM/I1",(modIndexValue));
+}
+
+void Cmls_fmsynthAudioProcessor::sendmodIndex2(float modIndexValue)
+{
+    sender.send("/FM/I2", (modIndexValue));
 }
 
 void Cmls_fmsynthAudioProcessor::sendmodFreq(float modFreqValue)
 {
-    sender.send("/FM/p6",(modFreqValue));
+    sender.send("/FM/cmRatio",(modFreqValue));
+}
+
+void Cmls_fmsynthAudioProcessor::sendVolume(float volumeValue)
+{
+    sender.send("/FM/vol", (volumeValue));
+}
+
+void Cmls_fmsynthAudioProcessor::sendDuration(float durationValue)
+{
+    sender.send("/FM/dur", (durationValue));
+}
+
+void Cmls_fmsynthAudioProcessor::sendEnvelope(int envValue)
+{
+    sender.send("/FM/env", (envValue));
 }
 
 

@@ -104,6 +104,19 @@ private:
         String stateString = state ? "ON" : "OFF";
 
         Logger::outputDebugString(name + " Button changed to " + stateString);
+        
+        if (button == &adsrButton) 
+        {
+            processor.sendEnvelope(2);
+        }
+        else if (button == &asrButton) 
+        {
+            processor.sendEnvelope(1);
+        }
+        else if (button == &percButton) 
+        {
+            processor.sendEnvelope(3);
+        }
     }
 
     void styleMenuChanged()

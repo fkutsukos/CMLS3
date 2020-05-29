@@ -191,13 +191,26 @@ void Cmls_fmsynthAudioProcessorEditor::sliderValueChanged(Slider *slider)
 
    if (slider == &modFreq)
     {
-        processor.setModFreq(modFreq.getValue());
-        processor.sendmodFreq(modFreq.getValue());
-        
+        processor.sendmodFreq(modFreq.getValue());   
     }
+
     else if (slider == &modIndex)
     {
-        processor.setModIndex(modIndex.getValue());
         processor.sendmodIndex(modIndex.getValue());
+    }
+
+    else if (slider == &modIndex2)
+    {
+       processor.sendmodIndex2(modIndex2.getValue());
+    }
+
+    else if (slider == &levelSlider)
+    {
+       processor.sendVolume(levelSlider.getValue());
+    }
+
+    else if (slider == &durationSlider)
+    {
+       processor.sendDuration(durationSlider.getValue());
     }
 }

@@ -11,16 +11,6 @@
 #pragma once
 
 #include <JuceHeader.h>
-typedef struct
-{
-    float mod_phase;
-    float mod_Freq;
-    int mod_Index;
-    float phase;
-    float amp;
-    float car_freq;
-}
-FMData;
 
 //==============================================================================
 /**
@@ -65,17 +55,20 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-    
-    void setCarrierFreq(float val);
-    void setModFreq(float val);
-    void setModIndex(float val);
+   
     float freq;
     void sendmodIndex(float modIndexValue);
     void sendmodFreq(float modFreqValue);
+    void sendmodIndex2(float modIndex2Value);
+    void sendVolume(float volumeValue);
+    void sendDuration(float durationValue);
+
+
+
+    void sendEnvelope(int envValue);
 
 
 private:
-    FMData data;
     DatagramSocket ds;
     OSCSender sender; // Declaration of the // OSC sender
     
