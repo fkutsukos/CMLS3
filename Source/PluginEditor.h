@@ -74,7 +74,9 @@ public:
 private:
     OtherLookAndFeel otherLookAndFeel;
 
-    Slider level;
+    Slider levelSlider;
+
+    Slider durationSlider;
 
     Slider modFreq;
     Label modFreqLabel;
@@ -82,19 +84,35 @@ private:
     Slider modIndex;
     Label modIndexLabel;
 
+    Slider modIndex2;
+    Label modIndexLabel2;
+
+    Label envLabel{ {}, "Envelope:" };
+    TextButton adsrButton{ "ADSR" },
+               asrButton{ "ASR" },
+               percButton{ "Percussive" };
+
     Label textLabel{ {}, "Presets:" };
     Font textFont{ 18.0f };
     ComboBox styleMenu;
 
     void sliderValueChanged( Slider * slider) override;
 
+    void updateToggleState(Button* button, String name)
+    {
+        auto state = button->getToggleState();
+        String stateString = state ? "ON" : "OFF";
+
+        Logger::outputDebugString(name + " Button changed to " + stateString);
+    }
+
     void styleMenuChanged()
     {
         switch (styleMenu.getSelectedId())
         {
-        case 1: textFont.setStyleFlags(Font::plain);  break;
-        case 2: modFreq.setValue(550), modIndex.setValue(2.5);   break;
-        case 3: modFreq.setValue(100), modIndex.setValue(6); break;
+        case 1: modFreq.setValue(1), modIndex.setValue(0), modIndex2.setValue(5), durationSlider.setValue(0.6), adsrButton.setToggleState(true, true); break;
+        case 2: modFreq.setValue(0.7), modIndex.setValue(0), modIndex2.setValue(2), durationSlider.setValue(0.2), percButton.setToggleState(true, true); break;
+        case 3: modFreq.setValue(3), modIndex.setValue(4), modIndex2.setValue(1), asrButton.setToggleState(true, true); break;
         default: break;
         }
 

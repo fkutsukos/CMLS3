@@ -28,8 +28,6 @@ FMData;
 class Cmls_fmsynthAudioProcessor  : public AudioProcessor
 {
 public:
-    
-    float volume;
 
     //==============================================================================
     Cmls_fmsynthAudioProcessor();
