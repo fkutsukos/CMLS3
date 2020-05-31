@@ -1,4 +1,7 @@
+
+Server.killAll;
 s.boot;
+
 
 //type1 (asr)
 (
@@ -8,8 +11,8 @@ SynthDef(\FM1,
         var env1, env2, modFr, out, mf, temp;
         mf = carr/cmRatio;
 
-		env1 = EnvGen.kr(Env([0,vol,vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
-		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf),0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env1 = EnvGen.kr(Env([0,vol,vol,0],[0.1,dur-0.1,dur/10]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf),0],[0.1,dur-0.1,dur/10]),gate:t_gate);
 
 
         modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
@@ -26,8 +29,8 @@ SynthDef(\FM2,
         var env1, env2, modFr, out, mf, temp;
         mf = carr/cmRatio;
 
-		env1 = EnvGen.kr(Env([0,vol,0.75*vol,0.75*vol,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
-		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf)*0.75,((mInd2-mInd1)*mf)*0.75,0],[dur/5,(dur/5)*4,dur/10]),gate:t_gate);
+		env1 = EnvGen.kr(Env([0,vol,0.75*vol,0.75*vol,0],[0.1,0.1,dur-0.3,0.1]),gate:t_gate);
+		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf)*0.75,((mInd2-mInd1)*mf)*0.75,0],[0.1,0.1,dur-0.3,0.1]),gate:t_gate);
 
 
         modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
@@ -54,6 +57,8 @@ SynthDef(\FM3,
 ).add;
 )
 
+(
+
 ~envType = 1;
 
 x = Synth(\FM1);
@@ -63,11 +68,11 @@ z = Synth(\FM3);
 n = NetAddr.new("127.0.0.1");
 
 //listener for the envType
-OSCFunc({|msg, time, addr, recvPort| ~envType = msg[1]}, '...', n);
+OSCFunc({|msg, time, addr, recvPort| ~envType = msg[1]}, '/FM/env', n);
 
 //listeners for all the index
-OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\dur,msg[1])},{if(~envType == 2,{y.set(\dur,msg[1])},{z.set(\dur,msg[1])})})}, '/FM/dur', n);
-OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\vol,msg[1])},{if(~envType == 2,{y.set(\vol,msg[1])},{z.set(\vol,msg[1])})})}, '/FM/vol', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\dur,msg[1])},{if(~envType == 2,{if(msg[1]>=0.3,{y.set(\dur,msg[1])},{y.set(\dur,0.3)})},{z.set(\dur,msg[1])})})}, '/FM/dur', n);
+OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\vol,msg[1]/100)},{if(~envType == 2,{y.set(\vol,msg[1]/100)},{z.set(\vol,msg[1]/100)})})}, '/FM/vol', n);
 OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\cmRatio,msg[1])},{if(~envType == 2,{y.set(\cmRatio,msg[1])},{z.set(\cmRatio,msg[1])})})}, '/FM/cmRatio', n);
 OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\mInd1,msg[1])},{if(~envType == 2,{y.set(\mInd1,msg[1])},{z.set(\mInd1,msg[1])})})}, '/FM/I1', n);
 OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\mInd2,msg[1])},{if(~envType == 2,{y.set(\mInd2,msg[1])},{z.set(\mInd2,msg[1])})})}, '/FM/I2', n);
@@ -78,32 +83,8 @@ OSCFunc({|msg, time, addr, recvPort| if(~envType == 1,{x.set(\carr,msg[1] , \t_g
 
 OSCFunc.trace(bool: true, hideStatusMsg: true);
 
-/*
-(
-
-var envType = 1;
-if(envType == 1,
-	{
-		x = Synth(\FM1);
-		x.set(\carr,261.63,\t_gate,1);
-		x.set(\carr,293.67,\t_gate,1);
-		x.set(\carr,329.63,\t_gate,1);
-	},{
-		if(envType == 2,
-			{
-				x = Synth(\FM2);
-				x.set(\carr,261.63,\t_gate,1);
-				x.set(\carr,293.67,\t_gate,1);
-				x.set(\carr,329.63,\t_gate,1);
-			},{
-				x = Synth(\FM3);
-				x.set(\carr,261.63,\t_gate,1);
-				x.set(\carr,293.67,\t_gate,1);
-				x.set(\carr,329.63,\t_gate,1);
-			}
-		)
-	}
-)
+s.meter;
+s.scope;
+s.freqscope;
 
 )
-*/
