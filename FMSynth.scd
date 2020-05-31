@@ -15,7 +15,7 @@ SynthDef(\FM1,
 		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf),0],[0.1,dur-0.1,dur/10]),gate:t_gate);
 
 
-        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
+        modFr = SinOsc.ar(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
@@ -33,7 +33,7 @@ SynthDef(\FM2,
 		env2 = EnvGen.kr(Env([0,((mInd2-mInd1)*mf),((mInd2-mInd1)*mf)*0.75,((mInd2-mInd1)*mf)*0.75,0],[0.1,0.1,dur-0.3,0.1]),gate:t_gate);
 
 
-        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
+        modFr = SinOsc.ar(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
@@ -50,7 +50,7 @@ SynthDef(\FM3,
 		env1 = EnvGen.kr(Env.perc(dur/4,dur*3/4,vol,-4.0),gate:t_gate);
 		env2 = EnvGen.kr(Env.perc(dur/4,dur*3/4,((mInd2-mInd1)*mf),-4.0),gate:t_gate);
 
-        modFr = SinOsc.kr(mf,0,env2+(mInd1*mf));
+        modFr = SinOsc.ar(mf,0,env2+(mInd1*mf));
         out = SinOsc.ar(carr+modFr,0,env1);
         Out.ar(0,Pan2.ar(out,0));
     }
